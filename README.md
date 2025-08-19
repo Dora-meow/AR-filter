@@ -40,8 +40,19 @@ AR濾鏡
 
 #### 素描 (pencil)
 原理：圖轉灰階 ➜ 做高斯模糊 ➜ 處理後的圖/原圖 *250 (模糊效果越強變化率越大) ➜ 做指數運算(調亮)<br>
-運用numpy array (`sol[x,y]=∑(kernel[i,j]×img[x+i,y+j]`) 來加速高斯運算
+運用 numpy array (`sol[x,y]=∑(kernel[i,j]×img[x+i,y+j]`) 來加速高斯運算
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 114408" src="https://github.com/user-attachments/assets/ca42ef26-923a-4a3b-888b-1afa43815974" />
+
+#### 點畫 (pen)
+原理：做3*3 medium filter
+➜ 圖轉灰階 
+➜ 做拉普拉斯遮罩  (找邊界)
+➜ 255-圖 (變化越多的越黑)
+➜ 247以上的變255其他0 <br>
+一樣運用運用 numpy array 加快拉普拉斯運算
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 142842" src="https://github.com/user-attachments/assets/415a6935-3e3c-4660-922d-33c045e61983" />
+
+####
 
 #### rgb失真 (broken)
 原理：分別對RGB做隨機的x軸滾動式偏移<br>
