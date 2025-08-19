@@ -63,18 +63,21 @@ AR濾鏡
 做高斯模糊 
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 155314" src="https://github.com/user-attachments/assets/d0634a21-132c-442c-8e26-74e8ccdd6128" />
 
-
 #### 魚眼鏡頭 (fish eye)
 原理：在圖的中心以1/2高為半徑的圓內把圖往圓周上拉，離圓心越近拉得越開<br>
 公式：
 $$新的x = 點離圓心的距離*\frac{(目前x-圓心x)}{半徑}  + 圓心x$$
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160057" src="https://github.com/user-attachments/assets/fb423436-7127-4a86-be8c-93e469e41333" />
 
-#### 
-原理：
+#### 老照片 (old photo)
+公式：
+<p>$$R   = 0.393 * R + 0.769 * G + 0.189 * B$$
+$$G  = 0.349 * R + 0.686 * G + 0.168 * B$$
+$$B   = 0.272 * R + 0.534 * G + 0.131 * B$$</p>
 
-####
-原理：
+
+#### 負片 (negative)
+公式：$$圖 = 255-原圖$$
 
 ####
 原理：
@@ -86,6 +89,8 @@ $$新的x = 點離圓心的距離*\frac{(目前x-圓心x)}{半徑}  + 圓心x$$
 https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
 
 <video scr='https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824'></video>
+
+
 
 ### 儲存圖片
 按save按紐可選儲存位置並儲存
