@@ -1,8 +1,10 @@
 # AR-filter
 AR濾鏡
 
+組員：張文睿、陳姵涵、湯昆璋
+
 ## 簡介
-運用影像處理的基礎原理，用python與C++實作出AR濾鏡，下面的功能可以疊加使用
+運用影像處理的基礎原理，用python與C++實作出AR濾鏡，下面的功能皆可以疊加使用
 
 主要功能：
 1. 濾鏡
@@ -13,11 +15,12 @@ AR濾鏡
     * 浮雕
     * 直方圖均化 
     * 分割畫面：可選要切幾次(1次會把1張圖分4塊)
-    * 像素畫
+    * 各種質感(布、紙、漸層等)
+    * 像素畫(馬賽克)
     * 調亮
     * 美肌
     * 暖色調
-    * 其他質感(布、紙、漸層等)
+    
 
 2. 邊框
     * 有一些預設邊框可以選，例如:張大嘴巴的巨人、相框
@@ -36,7 +39,7 @@ AR濾鏡
 
 ### 濾鏡
 用Lenna的效果
-<img width="1919" height="992" alt="image" src="https://github.com/user-attachments/assets/7c16c0c3-17f8-49c2-b5d1-227f6077a869" />
+<img width="1919" height="989" alt="image" src="https://github.com/user-attachments/assets/a5cd4850-a2f0-4ae8-9a1f-d7201fef5cd3" />
 
 #### 素描 (pencil)
 原理：圖轉灰階 ➜ 做高斯模糊 ➜ 處理後的圖/原圖 *250 (模糊效果越強變化率越大) ➜ 做指數運算(調亮)<br>
@@ -44,7 +47,7 @@ AR濾鏡
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 114408" src="https://github.com/user-attachments/assets/ca42ef26-923a-4a3b-888b-1afa43815974" />
 
 #### 點畫 (pen)
-原理：做3*3 medium filter
+原理：做3*3 medium filter (用C++加速)
 ➜ 圖轉灰階 
 ➜ 做拉普拉斯遮罩  (找邊界)
 ➜ 255-圖 (變化越多的越黑)
@@ -74,26 +77,73 @@ $$新的x = 點離圓心的距離*\frac{(目前x-圓心x)}{半徑}  + 圓心x$$
 <p>$$R   = 0.393 * R + 0.769 * G + 0.189 * B$$
 $$G  = 0.349 * R + 0.686 * G + 0.168 * B$$
 $$B   = 0.272 * R + 0.534 * G + 0.131 * B$$</p>
-
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160713" src="https://github.com/user-attachments/assets/5ff2ac0d-15be-4d80-bfc0-6f5b583a1717" />
 
 #### 負片 (negative)
 公式：
 $$圖 = 255-原圖$$
-
-####
-原理：
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160809" src="https://github.com/user-attachments/assets/2e8984f6-7c3e-4a1a-a1f1-2f5127a7ba6a" />
 
 #### rgb失真 (broken)
 原理：分別對RGB做隨機的x軸滾動式偏移<br>
-<img src="https://github.com/user-attachments/assets/98624a98-c893-4625-8c21-c9072d9649db" width="900">
-![rgb-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/009df65d-57c3-45e9-a163-3f74dd271a08)
 <img src="https://github.com/user-attachments/assets/009df65d-57c3-45e9-a163-3f74dd271a08" width="900">
 
-https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
+#### 浮雕 (relief)
+原理：圖轉灰階
+➜ 用遮罩:<br>
+<img width="193" height="60" alt="https://latex.codecogs.com/svg.latex?kernel%20=%20%5Cbegin{bmatrix}-1.5&0&0%5C%5C0&1.5&0%5C%5C0&0&0%5Cend{bmatrix}" src="https://github.com/user-attachments/assets/ec6152ee-3abd-4722-a61a-558ff4b97304" />
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160750" src="https://github.com/user-attachments/assets/481cf208-e576-4562-b292-715077791d01" />
 
-![未命名的影片_ 使用 Clipchamp 製作](https://github.com/user-attachments/assets/ebe48e46-c069-4fd0-86c1-39a7f827c3e7)
+#### 直方圖均化 (auto level)
+原理：得到圖片中每個色階值有幾個點，算每個色階值出現的機率 -> 算色階跟數量的CDF -> 全部乘255 -> 四捨五入到整數  (把公式分步驟做)，把圖片的色階值改成調整後的
+```
+ex : 運算後的陣列 :
+              0 1 2 3 4 5
+		   s=[0,0,1,2,3,5]  -> 色階0變0,色階1變0,色階2變1,色階3變2,色階4變3,色階5還是5
+```
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160821" src="https://github.com/user-attachments/assets/373d9e48-2b45-4ca3-86fe-0c718d9faf83" />
+
+#### 分割畫面 (split)
+可選要切幾次(1次會把1張圖分4塊)<br>
+原理：把圖縮小再複製很多個到對應的位子
+<img src="https://github.com/user-attachments/assets/f935473b-c83b-464f-a82d-81b507634a5f" width="900">
+
+#### 各種質感 (materil)
+原理：影像跟素材調整透明度，有的影像有先用用中位數遮罩(如canva, oil painting...)<br>
+公式：d*(照片/255)+(1-d)*(素材/255)
+<img width="898" height="708" alt="數位影像處理＿期末專題＿組九 (1)" src="https://github.com/user-attachments/assets/a2017256-4b04-4d68-bf90-c67ab8ef397b" />
 
 
+
+#### 像素畫 (pixelate)
+原理：用numpy切片，每 a * a 像素取1點 ➜ 用 3*3 median filter 去雜訊 (C++加速) ➜ 橫向插值，每個點橫向放大回 a 個 (公式：
+$$a點中第k個點 = 第1個點 +  6 * diff * (\frac{k}{a})^5 - 15 * diff * (\frac{k}{a})^4 + 10 * diff * (\frac{k}{a})^3$$) (C++加速) ➜ 用相通公式縱向插值，每個點縱向放大回 a 個 (C++加速)<br>
+<img src="https://github.com/user-attachments/assets/8b5592fb-4b40-466c-9e3d-e918edf5a329" width="900">
+
+#### 調亮 (brightness)
+原理：以log去調整RBG的光強度c*log2(1+f(x,y))
+
+#### 暖色調
+原理：直接調R值
+
+#### 美肌
+原理：取HSI的I值>0.2來調整
+
+
+### 邊框
+可往右滑，點選一個邊框，把 `use background` 打勾，按 `submit` 就會出現<br>
+原理：把圖片黑色部分都換成同一位置的影像(用np.where)
+* 使用者上傳圖片會先去背<br>
+   把整張圖片中出現頻率最高的顏色±閥值(30)範圍內的變成黑色
+
+
+### 貼圖
+可往右滑，點選一個圖案，把 `use item` 打勾，按 `submit` 就會出現<br>
+size調整放大倍數，absolute position 調整圖案在畫面中的位置<br>
+原理：把圖片黑色部分去除，圖片貼到影像中的指定位置
+* 使用者上傳圖片會先去背，跟邊框相同
+* 偵測人臉<br>
+   以人臉的HSI裡的H值去做解取，並找出將對於集中之區域以平均坐標取作偵測人臉的位置
 
 ### 儲存圖片
 按save按紐可選儲存位置並儲存
