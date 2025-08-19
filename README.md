@@ -49,10 +49,35 @@ AR濾鏡
 ➜ 做拉普拉斯遮罩  (找邊界)
 ➜ 255-圖 (變化越多的越黑)
 ➜ 247以上的變255其他0 <br>
-一樣運用運用 numpy array 加快拉普拉斯運算
+一樣運用運用 numpy array 加快拉普拉斯的運算
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 142842" src="https://github.com/user-attachments/assets/415a6935-3e3c-4660-922d-33c045e61983" />
 
+#### 美式漫畫 (animate)
+原理：
+* 線搞：
+圖轉灰階 
+➜ 做高斯模糊 
+➜ 拉普拉斯遮罩
+➜ 247以上的變255其他0
+* 著色：
+做高斯模糊 
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 155314" src="https://github.com/user-attachments/assets/d0634a21-132c-442c-8e26-74e8ccdd6128" />
+
+
+#### 魚眼鏡頭 (fish eye)
+原理：在圖的中心以1/2高為半徑的圓內把圖往圓周上拉，離圓心越近拉得越開<br>
+公式：
+$$新的x = 點離圓心的距離*\frac{(目前x-圓心x)}{半徑}  + 圓心x$$
+<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 160057" src="https://github.com/user-attachments/assets/fb423436-7127-4a86-be8c-93e469e41333" />
+
+#### 
+原理：
+
 ####
+原理：
+
+####
+原理：
 
 #### rgb失真 (broken)
 原理：分別對RGB做隨機的x軸滾動式偏移<br>
@@ -62,6 +87,9 @@ https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
 
 <video scr='https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824'></video>
 
+### 儲存圖片
+按save按紐可選儲存位置並儲存
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6ea82798-fa66-4637-ba62-bc595cd843fd" />
 
 ## 如何安裝
 1. 下載專案到電腦本地端的 `Downloads` 資料夾，並移動到專案的資料夾
