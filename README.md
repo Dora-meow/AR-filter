@@ -77,7 +77,8 @@ $$B   = 0.272 * R + 0.534 * G + 0.131 * B$$</p>
 
 
 #### 負片 (negative)
-公式：$$圖 = 255-原圖$$
+公式：
+$$圖 = 255-原圖$$
 
 ####
 原理：
@@ -85,9 +86,11 @@ $$B   = 0.272 * R + 0.534 * G + 0.131 * B$$</p>
 #### rgb失真 (broken)
 原理：分別對RGB做隨機的x軸滾動式偏移<br>
 ![未命名的影片_ 使用 Clipchamp 製作 (1)](https://github.com/user-attachments/assets/98624a98-c893-4625-8c21-c9072d9649db)
+<img src="https://github.com/user-attachments/assets/98624a98-c893-4625-8c21-c9072d9649db" width="1200">
 
 https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
 
+![未命名的影片_ 使用 Clipchamp 製作](https://github.com/user-attachments/assets/ebe48e46-c069-4fd0-86c1-39a7f827c3e7)
 
 
 
