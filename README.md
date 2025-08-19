@@ -85,8 +85,9 @@ $$圖 = 255-原圖$$
 
 #### rgb失真 (broken)
 原理：分別對RGB做隨機的x軸滾動式偏移<br>
-![未命名的影片_ 使用 Clipchamp 製作 (1)](https://github.com/user-attachments/assets/98624a98-c893-4625-8c21-c9072d9649db)
 <img src="https://github.com/user-attachments/assets/98624a98-c893-4625-8c21-c9072d9649db" width="900">
+![rgb-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/009df65d-57c3-45e9-a163-3f74dd271a08)
+<img src="https://github.com/user-attachments/assets/009df65d-57c3-45e9-a163-3f74dd271a08" width="900">
 
 https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
 
