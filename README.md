@@ -88,7 +88,6 @@ $$B   = 0.272 * R + 0.534 * G + 0.131 * B$$</p>
 
 https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824
 
-<video scr='https://github.com/user-attachments/assets/8fb3c1db-986f-4f40-987d-ee6886d6f824'></video>
 
 
 
