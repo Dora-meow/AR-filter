@@ -34,7 +34,8 @@ AR濾鏡
 4. 可隨時儲存照片
 
 ## 程式原理與介面
-### 首頁 (按 open 按鈕後相機就會開啟)
+### 首頁 
+按 open 按鈕後相機就會開啟，所有特效在勾選後按 submit 按鈕才會打開
 <img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 143254" src="https://github.com/user-attachments/assets/c1c12360-4246-47d8-8194-97107a01f79b" />
 
 ### 濾鏡
@@ -124,20 +125,21 @@ $$a點中第k個點 = 第1個點 +  6 * diff * (\frac{k}{a})^5 - 15 * diff * (\f
 
 #### 調亮 (brightness)
 原理：以log去調整RBG的光強度c*log2(1+f(x,y))
+![light-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/5c4c723d-ed58-4dc7-866f-df8e802e5fa1)
 
 #### 暖色調
 原理：直接調R值
+![warm-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/492ff4f1-07e9-4fbe-9283-543f3452f31c)
 
 #### 美肌
 原理：取HSI的I值>0.2來調整
-
+![white-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/045c3a48-6f27-4aa0-83cb-97e378de0733)
 
 ### 邊框
 可往右滑，點選一個邊框，把 `use background` 打勾，按 `submit` 就會出現<br>
 原理：把圖片黑色部分都換成同一位置的影像(用np.where)
 * 使用者上傳圖片會先去背<br>
    把整張圖片中出現頻率最高的顏色±閥值(30)範圍內的變成黑色
-
 
 ### 貼圖
 可往右滑，點選一個圖案，把 `use item` 打勾，按 `submit` 就會出現<br>
@@ -146,6 +148,20 @@ size調整放大倍數，absolute position 調整圖案在畫面中的位置<br>
 * 使用者上傳圖片會先去背，跟邊框相同
 * 偵測人臉<br>
    以人臉的HSI裡的H值去做解取，並找出將對於集中之區域以平均坐標取作偵測人臉的位置
+
+### 推薦組合
+1. 底片邊框+紙的質感+老照片的濾鏡
+	<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-19 161021" src="https://github.com/user-attachments/assets/c18742e3-bdce-426a-88b1-762245e0d056" />
+
+2. 電視邊框+RGB偏差+負片開開關關
+	![broken-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/6a4e045e-19f4-4f94-8d59-8db30d952bf9)
+
+3. 萬聖節+負片
+	<img width="1920" height="1080" alt="螢幕擷取畫面 2025-08-22 013806" src="https://github.com/user-attachments/assets/be6985b3-17c6-4fcc-9033-a4d204945c39" />
+
+4. 相機畫面+畫布質感+兔耳朵
+	<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/79881d16-60bd-4471-b377-942f341aa3fd" />
+
 
 ### 儲存圖片
 按save按紐可選儲存位置並儲存
