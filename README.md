@@ -109,10 +109,12 @@ ex : 運算後的陣列 :
 <img src="https://github.com/user-attachments/assets/f935473b-c83b-464f-a82d-81b507634a5f" width="900">
 
 #### 各種質感 (materil)
+共20種質感可選
+<img width="1738" height="385" alt="image" src="https://github.com/user-attachments/assets/e48e121d-d059-445a-b161-d25e935a10d7" />
+
 原理：影像跟素材調整透明度，有的影像有先用用中位數遮罩(如canva, oil painting...)<br>
 公式：d*(照片/255)+(1-d)*(素材/255)
-<img width="898" height="708" alt="數位影像處理＿期末專題＿組九 (1)" src="https://github.com/user-attachments/assets/a2017256-4b04-4d68-bf90-c67ab8ef397b" />
-
+<img width="1123" height="445" alt="image" src="https://github.com/user-attachments/assets/af122c3c-8687-42c0-86c4-d5bd649d8a7e" />
 
 
 #### 像素畫 (pixelate)
