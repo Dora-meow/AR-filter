@@ -136,13 +136,13 @@ $$a點中第k個點 = 第1個點 +  6 * diff * (\frac{k}{a})^5 - 15 * diff * (\f
 ![white-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/045c3a48-6f27-4aa0-83cb-97e378de0733)
 
 ### 邊框
-可往右滑，點選一個邊框，把 `use background` 打勾，按 `submit` 就會出現<br>
+可往右滑，點選一個邊框，把 `use background` 打勾，按 `submit` 就會出現，有14個可選也可自己上傳<br>
 原理：把圖片黑色部分都換成同一位置的影像(用np.where)
 * 使用者上傳圖片會先去背<br>
    把整張圖片中出現頻率最高的顏色±閥值(30)範圍內的變成黑色
 
 ### 貼圖
-可往右滑，點選一個圖案，把 `use item` 打勾，按 `submit` 就會出現<br>
+可往右滑，點選一個圖案，把 `use item` 打勾，按 `submit` 就會出現，有20個可選也可自己上傳<br>
 size調整放大倍數，absolute position 調整圖案在畫面中的位置<br>
 原理：把圖片黑色部分去除，圖片貼到影像中的指定位置
 * 使用者上傳圖片會先去背，跟邊框相同
